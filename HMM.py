@@ -38,10 +38,9 @@ def forward(state_distr,transitions,outputs,desired,memo):
 
         # Get the probability of the desired sequence
         # starting from this state
-        piece = state_distr[cur_state]*outputs[cur_state][desired[0]]*forward(next_distr,transitions,outputs,desired[1:],memo)
-        result += piece
+        result += state_distr[cur_state]*outputs[cur_state][desired[0]]*forward(next_distr,transitions,outputs,desired[1:],memo)
 
-    memo[identifier] = result
+    memo[identifier] = result   # memoize the result
     return result
 
 if __name__ == '__main__':
